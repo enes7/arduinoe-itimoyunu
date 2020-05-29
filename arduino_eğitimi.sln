@@ -1,26 +1,561 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{11333B6D-7092-7B20-5958-CF8AF02E7AC6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{872EAAC7-EA8D-D235-D7FF-E45E2F54D2C6}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{11333B6D-7092-7B20-5958-CF8AF02E7AC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{11333B6D-7092-7B20-5958-CF8AF02E7AC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{11333B6D-7092-7B20-5958-CF8AF02E7AC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{11333B6D-7092-7B20-5958-CF8AF02E7AC6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{872EAAC7-EA8D-D235-D7FF-E45E2F54D2C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{872EAAC7-EA8D-D235-D7FF-E45E2F54D2C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{872EAAC7-EA8D-D235-D7FF-E45E2F54D2C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{872EAAC7-EA8D-D235-D7FF-E45E2F54D2C6}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-EndGlobal
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class karakterkontrol : MonoBehaviour
+{
+    float horizontal = 0, vertical = 0;
+    Animator remyanimator,ol;
+    Rigidbody fizik;
+    public GameObject kafakamerasi,Tuzak1,bilgi1, kagit1,ısı,ısı1,but3,ates,su,ısısensörü,I,tus,ısıksensoru,led1,aısık,ası,olcu,dumann,bant,parca1,parca2,bantp,pencere,cikanduman,gazsensoru,sarkii,komfeti,komfeti1;
+    Vector3 kameraarasimesafe;
+    public RaycastHit hit;
+    Object ıt;
+    float kafaRotustalt = 0, kafaRotsagsol = 0,mesafe;
+    bool tamir = false;
+    GameObject kamera, pos1, pos2,bilgibir;
+    string yazi;
+    public string stringToEdit;
+    GUISkin myskin;
+    public RaycastHit hit1,hit2;
+    kapiacma ki;
+    atessuoda atsu;
+    Button btn;
+    Image image;
+    public bool olum,derece=false,sahip=false,hak=false,bilgiverr=false,derece1=false,sahip1=false,derece2=false,arduinopic=false, arduinopic1 = false,gaz=false,trap=false,derece3=false;
+    public bool bagla=false,gazbulut=false,dansss=false;
+    
+
+    void Start()
+    {
+        ol = GetComponent<Animator>();
+        
+        remyanimator = GetComponent<Animator>();
+        fizik = GetComponent<Rigidbody>();
+        kameraarasimesafe = kafakamerasi.transform.position - transform.position;
+        kamera = Camera.main.gameObject;
+        pos1 = kafakamerasi.transform.Find("pos1").gameObject;
+        pos2 = kafakamerasi.transform.Find("pos2").gameObject;
+        olum = false;
+        
+
+    }
+
+    
+
+    void Update()
+    {
+        //if (Input.GetKeyDown(KeyCode.G)) { ses.PlayOneShot(sesler); }
+        if (dansss)
+        {
+            remyanimator.SetBool("danss", true);
+            sarkii.gameObject.SetActive(true);
+            komfeti.gameObject.SetActive(true);
+            komfeti1.gameObject.SetActive(true);
+        }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            remyanimator.SetBool("Aletalma", true);          
+        }
+        else if (Input.GetKeyUp(KeyCode.F))
+        {
+            remyanimator.SetBool("Aletalma", false);
+        }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            remyanimator.SetBool("koymak", true);
+        }
+        else if (Input.GetKeyUp(KeyCode.P))
+        {
+            remyanimator.SetBool("koymak", false);
+        }
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            remyanimator.SetBool("yazmak", true);
+        }
+        else if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            remyanimator.SetBool("yazmak", false);
+        }
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            tamir = true;
+        }
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            tamir = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if (hak)
+            {
+                bilgi1.gameObject.SetActive(true);
+            }
+        }
+        if (Input.GetKeyUp(KeyCode.R))
+        {
+            
+            bilgi1.gameObject.SetActive(false);
+        }
+
+        /*if (Input.GetKeyDown(KeyCode.F))
+        {
+            ısı.gameObject.SetActive(false);
+            
+
+        }*/
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if (sahip)
+            {
+                ısı1.gameObject.SetActive(true);
+                derece = true;
+                arduinopic1 = true;
+                
+            }
+            if(sahip1)
+            {
+                led1.gameObject.SetActive(true);
+                arduinopic = true;
+
+            }
+            if (bagla)
+            {
+                gazbulut = true;
+                bant.gameObject.SetActive(true);
+                bantp.gameObject.SetActive(true);
+                parca1.gameObject.SetActive(false);
+                parca2.gameObject.SetActive(false);
+                pencere.gameObject.SetActive(false);
+                cikanduman.gameObject.SetActive(true);
+            }
+
+        }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            if (bilgiverr)
+            {
+                ısısensörü.gameObject.SetActive(true);
+                //I.gameObject.SetActive(false);
+                ısıksensoru.gameObject.SetActive(true);
+                gazsensoru.gameObject.SetActive(true);
+            }
+            if (arduinopic)
+            {
+                aısık.gameObject.SetActive(true);
+            }
+            if (arduinopic1)
+            {
+                ası.gameObject.SetActive(true);
+            }
+        }
+        if (Input.GetKeyUp(KeyCode.I))
+        {
+            ısısensörü.gameObject.SetActive(false);
+            ısıksensoru.gameObject.SetActive(false);
+            aısık.gameObject.SetActive(false);
+            ası.gameObject.SetActive(false);
+            gazsensoru.gameObject.SetActive(false);
+
+        }
+        dance();
+        sensor1();
+        derecelendir();
+        //bilgiver();
+        not();
+        buton();
+        sensor();
+        atessu();
+        Kod();
+        buton1();
+        nesneler();
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            if (derece3)
+            {
+                if (gaz)
+                {
+                    olcu.gameObject.SetActive(false);
+                    //dumann.gameObject.SetActive(false);
+                }
+            }
+            if (gazbulut)
+            {
+                dumann.gameObject.SetActive(false);
+            }
+            if (trap)
+            {
+                Tuzak1.gameObject.SetActive(false);
+            }
+            
+        }
+
+    }
+
+    void FixedUpdate()
+    {
+        Haraket();
+        
+
+        if (!tamir)
+        {
+            kamera.transform.position = Vector3.Lerp(kamera.transform.position, pos1.transform.position, 0.1f);
+            Rotasyon();
+        }
+        else
+        {
+            kamera.transform.position = Vector3.Lerp(kamera.transform.position, pos2.transform.position, 0.1f);
+            Rotasyon2();
+        }
+        
+        remyanimator.SetFloat("horizontal", horizontal);
+        remyanimator.SetFloat("vertical", vertical);
+    }
+    
+    /*void OnTriggerEnter(Collider nesne)
+        {
+
+            if (nesne.gameObject.CompareTag("bilgiver"))
+            {
+                
+                nesne.gameObject.SetActive(true);
+                
+
+        }
+
+
+        }*/
+
+    public void atessu()
+    {
+
+        if (derece)
+        {
+            if (derece1)
+            {
+                if (Input.GetKeyDown(KeyCode.T))
+                {
+                    but3.gameObject.SetActive(false);
+                    ates.gameObject.SetActive(false);
+                    su.gameObject.SetActive(true);
+                }
+            }
+                
+            
+            
+        }
+    }
+    public void derecelendir()
+    {
+        if (stringToEdit == "#include <LiquidCrystal.h> int lm35Pin = A0; LiquidCrystal lcd(12, 11, 5, 4, 3, 2); void setup() { lcd.begin(16, 2); analogReference(INTERNAL); lcd.print('Sicaklik Olcumu:'); } void loop() { int sicaklikVolt = analogRead(lm35Pin); float sicaklikC = sicaklikC = sicaklikVolt / 9.31; lcd.setCursor(0, 1); lcd.print(sicaklikC); lcd.setCursor(6,1);  lcd.print('7C'); delay(100);}")
+        {
+            derece1 = true;
+        }
+        else if (stringToEdit == "int led = 13; void setup() { pinMode(led, OUTPUT); void loop() { digitalWrite(led, HIGH);  delay(1000); digitalWrite(led, LOW); delay(1000);")
+        {
+            derece2 = true;
+        }
+        else if (stringToEdit == "const int gasPin = A0; void setup() { Serial.begin(9600); } void loop() { Serial.println(analogRead(gasPin)); delay(1000); }")
+        {
+            derece3 = true;
+        }
+
+
+    }
+    public void nesneler()
+    {
+        if (Physics.Raycast(transform.position, transform.forward, out hit1, 15))
+        {
+            if (hit1.transform.tag == "nesne")
+            {
+                bagla = true;
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+
+                    Destroy(hit1.transform.gameObject);
+
+                }
+            }
+
+        }
+    }
+    public void dance()
+    {
+        if (Physics.Raycast(transform.position, transform.forward, out hit1, 15))
+        {
+            if (hit1.transform.tag == "danset")
+            {
+                dansss = true;
+                
+            }
+
+        }
+    }
+    public void buton()
+    {
+        if (Physics.Raycast(transform.position, transform.forward , out hit1, 15))
+        {
+            if (hit1.transform.tag == "buton")
+            {
+                gaz = true;
+                if (Input.GetKeyDown(KeyCode.T))
+                {
+
+                    Destroy(hit1.transform.gameObject);
+
+                }
+            }
+
+        }
+    }
+    public void buton1()
+    {
+        if (Physics.Raycast(transform.position, transform.forward, out hit1, 15))
+        {
+            if (hit1.transform.tag == "buton1")
+            {
+                trap = true;
+                if (Input.GetKeyDown(KeyCode.T))
+                {
+
+                    Destroy(hit1.transform.gameObject);
+
+                }
+            }
+
+        }
+    }
+
+    public void sensor()
+    {
+        if (Physics.Raycast(transform.position, transform.forward, out hit1, 5))
+        {
+            
+            if (hit1.transform.tag == "sensor")
+            {
+                bilgiverr = true;
+
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    
+                    Destroy(hit1.transform.gameObject);
+                    sahip = true;
+                    
+                }
+            }
+
+        }
+    }
+    public void sensor1()
+    {
+        if (Physics.Raycast(transform.position, transform.forward, out hit1, 5))
+        {
+
+            if (hit1.transform.tag == "sensor1")
+            {
+                
+
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+
+                    Destroy(hit1.transform.gameObject);
+                    sahip1 = true;
+
+                }
+            }
+
+        }
+    }
+    public void not()
+    {
+        if (Physics.Raycast(transform.position, transform.forward, out hit1, 5))
+        {
+            if (hit1.transform.tag == "notlar")
+            {
+
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+
+                    Destroy(hit1.transform.gameObject);
+
+                    hak = true;
+                }
+            }
+
+        }
+    }
+
+
+    void OnGUI()
+    {
+
+        GUI.skin = myskin;
+        
+        if (tamir)
+        {
+            
+            stringToEdit = GUI.TextField(new Rect(Screen.width/3 - 30,Screen.height/4  -30, 400, 400), stringToEdit, 1000);
+            
+            if (GUI.changed == true)
+            {
+                
+
+            }
+
+            
+
+            if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 1 - 80, 200, 40), "Tamam"))
+            {
+                if (stringToEdit == "int led = 13; void setup() { pinMode(led, OUTPUT); void loop() { digitalWrite(led, HIGH);  delay(1000); digitalWrite(led, LOW); delay(1000);")
+                {
+
+                    
+                    
+                        Kod();
+                    
+                }
+                else if (stringToEdit == "#include <LiquidCrystal.h> int lm35Pin = A0; LiquidCrystal lcd(12, 11, 5, 4, 3, 2); void setup() { lcd.begin(16, 2); analogReference(INTERNAL); lcd.print('Sicaklik Olcumu:'); } void loop() { int sicaklikVolt = analogRead(lm35Pin); float sicaklikC = sicaklikC = sicaklikVolt / 9.31; lcd.setCursor(0, 1); lcd.print(sicaklikC); lcd.setCursor(6,1);  lcd.print('7C'); delay(100);}")
+                {
+
+                    //derecelendir();
+                    //Kod();
+                    
+                    
+                }
+                else if (stringToEdit == "const int gasPin = A0; void setup() { Serial.begin(9600); } void loop() { Serial.println(analogRead(gasPin)); delay(1000); }")
+                {
+                    
+                    Kod();
+                }
+                else if (stringToEdit == "yes")
+                {
+                    Kod();
+                }
+                else if (stringToEdit == "no")
+                {
+                    Kod();
+                }
+            }
+            
+            if (Input.GetKeyUp(KeyCode.Escape))
+            {
+                Application.Quit();
+            }
+        }
+                        
+
+    }
+
+    
+    public void Kod()
+    {
+        if (Physics.Raycast(transform.position, transform.forward, out hit1, 5))
+        {
+            if (hit1.transform.tag == "acma")
+            {
+                ki = hit1.transform.gameObject.GetComponent<kapiacma>();
+                if (stringToEdit== "int led = 13; void setup() { pinMode(led, OUTPUT); void loop() { digitalWrite(led, HIGH);  delay(1000); digitalWrite(led, LOW); delay(1000);") 
+                {
+                    if (derece2 && sahip1)
+                    {
+                        ki.kapioynat();
+                    }
+                }
+                
+                else if (stringToEdit == "#include <LiquidCrystal.h> int lm35Pin = A0; LiquidCrystal lcd(12, 11, 5, 4, 3, 2); void setup() { lcd.begin(16, 2); analogReference(INTERNAL); lcd.print('Sicaklik Olcumu:'); } void loop() { int sicaklikVolt = analogRead(lm35Pin); float sicaklikC = sicaklikC = sicaklikVolt / 9.31; lcd.setCursor(0, 1); lcd.print(sicaklikC); lcd.setCursor(6,1);  lcd.print('7C'); delay(100);}")
+                {
+
+                    derece1 = true;
+                    //ki.kapioynat();
+
+                }
+                else if (stringToEdit == "const int gasPin = A0; void setup() { Serial.begin(9600); } void loop() { Serial.println(analogRead(gasPin)); delay(1000); }")
+                {
+                    //ki.kapioynat();
+                    derece3 = true;
+                }
+                else if (stringToEdit == "yes")
+                {
+                    ki.kapioynat();
+
+                }
+                else if (stringToEdit == "no")
+                {
+                    ki.kapioynat();
+
+                }
+            }
+
+        }
+    }
+
+    
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.tag == "tuzak")
+        {
+            olum = true;
+            ol.SetBool("olurse", true);
+        }
+    }
+
+
+    /*public void Al()
+
+    {
+        if (hit1.transform.tag == "sensor")
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                Destroy(hit1.transform.gameObject);
+            }
+        }
+
+    }*/
+
+    public void Haraket()
+    {
+        if (!olum)
+        {
+            horizontal = Input.GetAxis("Horizontal");
+            vertical = Input.GetAxis("Vertical");
+
+
+
+            Vector3 vec = new Vector3(horizontal, 0, vertical);
+            //transform.Translate(vec * Time.deltaTime * 3);
+            vec = transform.TransformDirection(vec);
+            fizik.position += vec * Time.fixedDeltaTime * 7;
+        }
+    }
+    void Rotasyon()
+    {
+        kafakamerasi.transform.position = transform.position + kameraarasimesafe;
+        kafaRotustalt += Input.GetAxis("Mouse Y") * Time.fixedDeltaTime * -150;
+        kafaRotsagsol += Input.GetAxis("Mouse X") * Time.fixedDeltaTime * 150;
+        kafaRotustalt = Mathf.Clamp(kafaRotustalt, -30, 30);
+        kafakamerasi.transform.rotation = Quaternion.Euler(kafaRotustalt, kafaRotsagsol, transform.eulerAngles.z);
+
+        if (horizontal != 0 || vertical != 0)
+        {
+            Physics.Raycast(new Vector3(0, 2, 0), kafakamerasi.transform.GetChild(0).forward, out hit);
+            transform.rotation = Quaternion.LookRotation(new Vector3(hit.point.x, 0, hit.point.z));
+            Debug.DrawLine(Vector3.zero, hit.point);
+        }
+    }
+    void Rotasyon2()
+    {
+        kafakamerasi.transform.position = transform.position + kameraarasimesafe;
+        kafaRotustalt += Input.GetAxis("Mouse Y") * Time.fixedDeltaTime * -150;
+        kafaRotsagsol += Input.GetAxis("Mouse X") * Time.fixedDeltaTime * 150;
+        kafaRotustalt = Mathf.Clamp(kafaRotustalt, -30, 30);
+        kafakamerasi.transform.rotation = Quaternion.Euler(kafaRotustalt, kafaRotsagsol, transform.eulerAngles.z);
+
+        Physics.Raycast(new Vector3(0, 2, 0), kafakamerasi.transform.GetChild(0).forward, out hit);
+        transform.rotation = Quaternion.LookRotation(new Vector3(hit.point.x, 0, hit.point.z));
+        Debug.DrawLine(Vector3.zero, hit.point);
+        
+    }
+}
